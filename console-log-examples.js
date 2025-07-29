@@ -1,3 +1,8 @@
+// Demonstrates how console.log works: 
+    // prints to the terminal
+    // its return value is undefined
+    // custom logger function can return the logged value
+
 console.log("Hello, world!"); // prints text to terminal (return type is undefined)
 
 let result = console.log("Hello, again!"); // prints text to terminal, assigns result undefined return type

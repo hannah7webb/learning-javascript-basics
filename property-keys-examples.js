@@ -8,7 +8,7 @@
         // both a css property and property key provide unique details about the class/object they belong to 
         // a css class holds styling rules (property-value pairs), while an object holds data (property key-value pairs)
 // --------------------------------------------------------------------
-// example 1: creates user with name, age, isPremium property key values 
+// example #1: creates user with name, age, isPremium property key values 
 const user = {
     name: "John Smith", // property key 'name' with string value 
     age: 40, // property key 'age' with number value 
@@ -18,7 +18,7 @@ console.log(user.name); // prints: John Smith
 console.log(user.age); // prints: 40 
 console.log(user.isPremium); // prints: false
 // --------------------------------------------------------------------
-// example 2: stores multiple musicians as objects in an array, uses property keys 
+// example #2: stores multiple musicians as objects in an array, uses property keys 
 // to hold data and dynamically adds a 'compatibility' property based on matching criteria
 let musicians = [ // creates an array with 3 musicians. each has 3 property keys: name, instrument, style
   { name: "Hannah", instrument: "clarinet", style: "classical" }, 

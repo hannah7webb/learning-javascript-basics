@@ -11,7 +11,6 @@ function factorial(n) {
   if (n === 0) return 1; // base case
   return n * factorial(n - 1); // function call inside the function itself
 }
-console.log("We can use recursion to calculate the factorial of 5, " + factorial(5) + "."); 
 // when n = 5: return 5 * factorial(4)
 // when n = 4: return 4 * factorial(3)
 // when n = 3: return 3 * factorial(2)
@@ -23,11 +22,33 @@ console.log("We can use recursion to calculate the factorial of 5, " + factorial
 //  for n = 3: return 3 * 2 = 6 
 //  for n = 4: return 4 * 6 = 24 
 //  for n = 5: return 5 * 24 = 120
+console.log("We can use recursion to calculate the factorial of 5, " + factorial(5) + "."); 
 // --------------------------------------------------------------------
-// example #2: uses a recursive function to traverse a tree of comments and replies, 
+// example #2: uses a recursive function to calculate terms of the fibonacci sequence 
+function fib(n) {
+    if (n === 0) { // base case #1 
+        return 0;
+    }
+    if (n === 1) { // base case #2 
+        return 1; 
+    }
+    return fib(n - 1) + fib(n - 2); // we have two basecases for the two unknowns in our return statement 
+}
+// when n = 5: return fib(4) + fib(3) 
+// when n = 4: return fib(3) + fib(2) 
+// when n = 3: return fib(2) + fib(1) 
+// when n = 2: return fib(1) + fib(0) 
+// when n = 1: fib(1) returns 1  <-- hits base case 
+// when n = 0: fib(0) returns 0  <-- hits base case 
+// evaluating backwards: 
+// for n = 2: return 1 + 0 = 1 
+// for n = 3: return 1 + 1 = 2 
+// for n = 4: return 2 + 1 = 3 
+// for n = 5: return 3 + 2 = 5
+console.log("We can use recursion to calculate the fifth term of the fibonacci sequence," + fib(5) + ".");
+// --------------------------------------------------------------------
+// example #3: uses a recursive function to traverse a tree of comments and replies, 
 // building a string with indented comment text to show the nested structure 
-console.log("We can also use recursion to traverse through a tree of comments and replies, adding indentations:");
-
 const comments = [
   {
     text: "Comment #1",
@@ -41,7 +62,6 @@ const comments = [
     ],
   },
 ];
-
 function renderComments(comments, indent = 0, acc = "") {
 
     if (comments.length === 0) { // base case 
@@ -50,12 +70,10 @@ function renderComments(comments, indent = 0, acc = "") {
     const [first, ...rest] = comments; // array deconstruction: "first" is first comment in array, "rest" is remaining comments  
 
     acc += ' '.repeat(indent) + first.text + '\n'; // add indented space and text of first comment to accumulator
-    
     acc = renderComments(first.replies, indent + 2, acc); // processes replies of current comment & indents based on depth 
 
     return renderComments(rest, indent, acc); // process rest of comments 
 }
-
 //renderComments(comments = [Comment #1], indent = 0, acc = "")
 //|
 //└─ process Comment #1 (indent 0)
@@ -80,6 +98,6 @@ function renderComments(comments, indent = 0, acc = "") {
 //         |     └─ comments empty → **base case hit, return acc**
 //         └─ renderComments(rest of replies at indent 2, acc)
 //            └─ rest empty → **base case hit, return acc**
-
+console.log("We can also use recursion to traverse through a tree of comments and replies, adding indentations:");
 let rendered = renderComments(comments);
 console.log(rendered);

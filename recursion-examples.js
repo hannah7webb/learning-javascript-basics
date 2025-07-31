@@ -1,10 +1,9 @@
-// note: to run code, type node recursion-examples.js into your terminal and click enter 
-// how recursion works + examples of usecases: 
+// how recursion works + examples of use cases: 
     // recursion is a programming technique where a function calls itself
     // each call works on a smaller part of the problem 
     // the function keeps calling itself until it reaches a base case (a condition that stops further recursion)
     // once the base case is met, the function returns and previous calls compound upon each other backwards
-    // recursion is useful for solving complex, naturally nested problems (e.g. factorials, traversing through trees)
+    // recursion is useful for solving complex, naturally nested problems (e.g. sequences, traversing through trees)
 // --------------------------------------------------------------------
 // example #1: uses a recursive function to calculate factorials 
 function factorial(n) {

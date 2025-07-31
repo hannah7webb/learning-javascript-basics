@@ -1,5 +1,4 @@
-// note: to run code, type node console-log-examples.js into your terminal and click enter 
-// how console.log works + examples of usecases: 
+// how console.log works + examples of use cases: 
     // prints message to the terminal
     // its return value is undefined
 // --------------------------------------------------------------------

@@ -1,5 +1,4 @@
-// note: to run code, type node property-keys-examples.js into your terminal and click enter 
-// how property keys work + examples of usecases: 
+// how property keys work + examples of use cases: 
     // property key-value pairs assign a value to an object 
     // property key + value = a property of the object 
     // useful for storing object-specific information
@@ -54,4 +53,4 @@ let results = musicians.map(musician => {
 console.log(results);
 // --------------------------------------------------------------------
 // note that the 'compatibility' property key was dynamically added to each musician object,
-// showing how property keys can be used to extend objects with new data.
+// showing how property keys can be used to extend objects with new data 

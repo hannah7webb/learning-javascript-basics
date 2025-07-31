@@ -52,7 +52,10 @@ function costTickets(guests) {
         guests -= 1; 
     }
     // imagine if i changed i's value here--we'd mess up our next loop which relies on i's previous value
-    for (guests; guests > 0; guests--) {
+    // this explains why var is often too loose of a variable declaration;
+    // if we used let instead, we could redeclare a variable called i in the next block and set its value to 5 
+    // this way, we know that i's value is exclusively native to the block that it is in and cannot be tampered with
+    for (; guests > 0; guests--) {
         if (guests > 0) {
             cost += 10; 
             cost += i + 1; 

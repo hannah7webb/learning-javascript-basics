@@ -1,6 +1,12 @@
-// how console.log works + examples of use cases: 
-    // prints message to the terminal
+// this file uses console.log to demonstrate the nature of function return values 
+// how console.log works: 
+    // it is a built-in javascript function that prints a message to the terminal 
     // its return value is undefined
+    // we'll show how to use console log to 
+        // print a message
+        // print a message and the console log return value
+        // create a custom function that prints an input and sets the return value equal to the input
+        // print the custom function's return value 
 // --------------------------------------------------------------------
 // example #1 -- prints text to terminal, return value (undefined) unstored 
 console.log("example #1 text! my return value (undefined) is unstored.");
@@ -23,7 +29,7 @@ logger(text); // calls function that prints text to terminal (return value is th
 let otherText = logger("example #4 text! my return value (val--this very string!) was stored to otherText. see it below:"); // prints text to terminal, assigns val as return value 
 logger(otherText); // prints otherText, val return value 
 // --------------------------------------------------------------------
-// summary: console.log itself always returns undefined. 
-// functions like logger can return values, which you can store in variables and use later.
+// summary: console.log itself always returns undefined; 
+// functions like logger can return custom values, which you can store in variables and use later.
 
 

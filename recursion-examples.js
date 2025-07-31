@@ -24,27 +24,62 @@ console.log("We can use recursion to calculate the factorial of 5, " + factorial
 //  for n = 4: return 4 * 6 = 24 
 //  for n = 5: return 5 * 24 = 120
 // --------------------------------------------------------------------
-// example #2: uses a recursive function to 
+// example #2: uses a recursive function to traverse a tree of comments and replies, 
+// building a string with indented comment text to show the nested structure 
+console.log("We can also use recursion to traverse through a tree of comments and replies, adding indentations:");
+
 const comments = [
   {
-    text: "I like this video!",
+    text: "Comment #1",
     replies: [
-      {
-        text: "Me too!",
+      { text: "Reply #1 to Comment #1",
         replies: [
-          { text: "Especially the part at 2:10", replies: [] },
+          { text: "Reply #1 to Reply #1", replies: [] },
         ],
       },
-      { text: "Really? I didn't really like it.", replies: [] },
+      { text: "Reply #2 to Comment #1", replies: [] },
     ],
   },
 ];
 
-function printComments(comments, indent = 0) {
-  comments.forEach(comment => {
-    console.log(' '.repeat(indent) + comment.text);
-    printComments(comment.replies, indent + 2);
-  });
+function renderComments(comments, indent = 0, acc = "") {
+
+    if (comments.length === 0) { // base case 
+    return acc; } // when no comments left to render, return accumulator
+    
+    const [first, ...rest] = comments; // array deconstruction: "first" is first comment in array, "rest" is remaining comments  
+
+    acc += ' '.repeat(indent) + first.text + '\n'; // add indented space and text of first comment to accumulator
+    
+    acc = renderComments(first.replies, indent + 2, acc); // processes replies of current comment & indents based on depth 
+
+    return renderComments(rest, indent, acc); // process rest of comments 
 }
 
-printComments(comments);
+//renderComments(comments = [Comment #1], indent = 0, acc = "")
+//|
+//└─ process Comment #1 (indent 0)
+//   ├─ add "Comment #1\n" to acc
+//   └─ renderComments(replies of Comment #1, indent = 2, acc)
+//      |
+//      ├─ process Reply #1 to Comment #1 (indent 2)
+//      |  ├─ add "  Reply #1 to Comment #1\n" to acc
+//      |  └─ renderComments(replies of Reply #1 to Comment #1, indent = 4, acc)
+//      |     |
+//      |     ├─ process Reply #1 to Reply #1 (indent 4)
+//      |     |  ├─ add "    Reply #1 to Reply #1\n" to acc
+//      |     |  └─ renderComments(replies of Reply #1 to Reply #1, indent = 6, acc)
+//      |     |     └─ comments is empty → **base case hit, return acc**
+//      |     └─ renderComments(rest of replies at indent 4, acc)
+//      |        └─ rest is empty → **base case hit, return acc**
+//      |
+//      └─ renderComments(rest of replies at indent 2, acc)
+//         ├─ process Reply #2 to Comment #1 (indent 2)
+//         |  ├─ add "  Reply #2 to Comment #1\n" to acc
+//         |  └─ renderComments(replies of Reply #2, indent = 4, acc)
+//         |     └─ comments empty → **base case hit, return acc**
+//         └─ renderComments(rest of replies at indent 2, acc)
+//            └─ rest empty → **base case hit, return acc**
+
+let rendered = renderComments(comments);
+console.log(rendered);

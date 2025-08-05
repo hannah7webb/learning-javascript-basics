@@ -1,4 +1,9 @@
-// ties together basic function-programming concepts 
+// Ties together basic functional-programming concepts with a program that
+// uses mapping, scoring, and recursive sorting to recommend musicians based 
+// on user preferences for instrument, style, location, and price. Demonstrates 
+// the use of higher-order functions, immutability via object spreading, and 
+// recursion as an elegant sorting solution that avoids loops. 
+
 let musicians = [
     { name: "Hannah", instrument: "clarinet", style: "classical", location: "Fresno", price: "$$" },
     { name: "Noah", instrument: "violin", style: "pop", location: "Oakland", price: "$$$" },
@@ -38,84 +43,54 @@ function addCompatibility(user, score) {
     };
 }
 
-function sortResults(data) {
-    data.score
+function sortMusicians(values, index = 0) {
+  if (index >= values.length - 1) return values; // base case
+
+  let didSwap = false;
+
+  for (let i = index + 1; i < values.length; i++) {
+    if (values[index].compatibility < values[i].compatibility) {
+      // swap if current value is less than the one being compared to
+      [values[index], values[i]] = [values[i], values[index]];
+      didSwap = true;
+    }
+  }
+
+  // if we swapped, recheck the new number at the current index
+  if (didSwap) {
+    return sortMusicians(values, index);
+  } else {
+    // otherwise, move to the next index
+    return sortMusicians(values, index + 1);
+  }
 }
 
-// goal: sort array ranging from highest to lowest value
-// look at first, compare to each of the following items
-    // if greater than the item it is compared to, leave it as is 
-    // if less than the item it is compared to, swap the indexes 
-// once done with that number 
-    // if the number changed indexes, start on the new first number 
-    // if the number has the same index, move onto the next number 
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-function sortTest([values]) {
-let [first, ...rest] = values; // array deconstruction 
-
-if (first.values < ) { // 
-
-}
-return sortTest([rest]);
-}
-
-// just realized why recursion is often the most elegant solution to problems: 
-// because if you use loops with variable declarations in the first line, you 
-// often lose valuable information about where you are in your iteration--however, 
-// functions written purely recursively, naturally keep track of that information. 
-
-console.log(sortTest([1, 5, 3, 4])); 
-// look at 1 -- first number 
-    // is 1 greater than 5? 
-        // no, swap 1 and 5's place 5 1 3 4 
-    // is 1 greater than 3? 
-        // no, swap 1 and 3's place 5 3 1 4 
-    // is 1 greater than 4?
-        // no, swap 1 and 4's place 5 3 4 1 
-// look at 5 -- first number, if all yes, move to next number. if one no, sort first number again
-    // is 5 greater than 3? 
-        // yes, don't swap 
-    // is 5 greater than 4? 
-        // yes, don't swap 
-    // is 5 greater than 1? 
-        // yes, don't swap
-// look at 3 -- next number, prev was all yes 
-    // is 3 greater than 4? 
-        // no, swap 3 and 4's place 5 4 3 1 
-    // is 3 greater than 1? 
-        // yes, don't swap
-    
-
-
-
-// const readline = require('readline');
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
-
-// console.log("Let's help you find the perfect musician for your event!"); 
-// rl.question("What instrument are you looking for? ", function(instrument) {
-//     rl.question("What style do you prefer? ", function(style) {
-//         rl.question("Where are you located? ", function(location) {
-//             rl.question("What pricing do you prefer ($, $$, or $$$)? ", function(price){
-//                 console.log("\nGreat! Here's what you told us: ");
-//                 console.log("Instrument: " + instrument);
-//                 console.log("Style: " + style);
-//                 console.log("Location: " + location);
-//                 console.log("Pricing: " + price);
-//                 console.log("Top results for your search: ");
-//                 // maps compatibility score onto musician objects and returns updated array of results 
-//                 let results = musicians.map(musician => {
-//                 let score = calculateCompatibility(musician, instrument, style, location, price);
-//                 return addCompatibility(musician, score);
-//                 });
-//                 // prints results to terminal
-//                 console.log(results);
-//                 rl.close();
-//             })
-//         })
-//     })
-// });
-
-// still need to write a recursive sorting function that displays results from most compatible to least compatible 
+console.log("Let's help you find the perfect musician for your event!"); 
+rl.question("What instrument are you looking for? ", function(instrument) {
+    rl.question("What style do you prefer? ", function(style) {
+        rl.question("Where are you located? ", function(location) {
+            rl.question("What pricing do you prefer ($, $$, or $$$)? ", function(price){
+                console.log("\nGreat! Here's what you told us: ");
+                console.log("Instrument: " + instrument);
+                console.log("Style: " + style);
+                console.log("Location: " + location);
+                console.log("Pricing: " + price);
+                console.log("Top results for your search: ");
+                // maps compatibility score onto musician objects and returns updated array of results 
+                let results = musicians.map(musician => {
+                let score = calculateCompatibility(musician, instrument, style, location, price);
+                return addCompatibility(musician, score);
+                });
+                // prints results to terminal
+                console.log(sortMusicians(results, 0));
+                rl.close();
+            })
+        })
+    })
+});

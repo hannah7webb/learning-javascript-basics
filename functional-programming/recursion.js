@@ -100,3 +100,64 @@ function renderComments(comments, indent = 0, acc = "") {
 console.log("We can also use recursion to traverse through a tree of comments and replies, adding indentations:");
 let rendered = renderComments(comments);
 console.log(rendered);
+// --------------------------------------------------------------------
+// example #4: uses a recursive algorithm to sum all elements in an array of integers 
+function sumArray(integers, sum = 0) { // takes in an array of integers and an accumulator "sum" (defaulted to 0)
+if (integers.length === 0) { // base case: when integers array is empty, return sum
+  return sum; 
+}
+const [first, ...rest] = integers; // array deconstruction: allows us to grab first and rest elements of array 
+sum += first; // add first element to sum. in each recursive call first is updated to the next value in the array, and sum is updated--accumulated
+return sumArray(rest, sum); // recursive call: call function again with the rest of elements and updated sum 
+}
+console.log("We can use recursion to calculate the sum of an array of numbers 1, 5, 3, and 2: " + sumArray([1, 5, 3, 2]));
+// --------------------------------------------------------------------
+// example #5: uses a recursive algorithm to count all even integers in an array of integers 
+function countEvens(integers, count = 0) { // takes in an array of integers and an accumulator "count" (defaulted to 0)
+if (integers.length === 0) { // base case: when integers array is empty, return count
+  return count; 
+}
+const [first, ...rest] = integers; // array deconstruction: allows us to grab first and rest elements of array 
+if (first % 2 === 0) { // if first has no remainder when divided by 2 (even), add one to count 
+  count ++; 
+} 
+return countEvens(rest, count); // recursive call: call function again with the rest of the elements and updated count 
+}
+console.log("We can use recursion to count the number of even values of an array of integers 1, 5, 3, and 2: " + countEvens([1, 5, 3, 2]));
+// --------------------------------------------------------------------
+// example #6: uses a recursive algorithm to count the number of times a specific value appears in an array of integers
+function countValue(integers, value, count = 0) {
+if (integers.length === 0) { // base case: when integers array is empty, return count
+  return count;
+}
+const [first, ...rest] = integers; // array deconstruction: allows us to grab first and rest elements of array 
+if (first === value) { // if first is equal to the value we're searching for, add one to the count 
+  count++;
+}
+return countValue(rest, value, count); // recursive call: call function again with the rest of the elements, value searching for, and updated count 
+}
+console.log("We can use recursion to count the number of times a specific value (4) appears in an array of integers 1, 5, 3, 4, 1, 2, and 4: " + countValue([1, 5, 3, 4, 1, 2, 4], 4));
+// --------------------------------------------------------------------
+// example #7: uses a recursive algorithm to reverse a string 
+function reverseString(str, index = str.length - 1, acc = "") {
+if (index === -1) { // if we've finished traversing the string, return accumulator 
+  return acc;
+} 
+acc += str[index]; // adds letter to accumulator at current index 
+index--; // update index to be next letter 
+return reverseString(str, index, acc); // recursive call: call function again with string, current index, updated accumulator 
+}
+console.log("We can use recursion to reverse strings like 'racecar is a palindrome': " + reverseString("racecar is a palindrome"));
+// --------------------------------------------------------------------
+// example #7: uses a recursive algorithm to check if a string is a palindrome
+function checkPalindrome(str, index = str.length - 1, acc = "") {
+if (index === -1) { // if we've finished traversing the string, return boolean checking if reverse string is same as original string 
+  return str === acc; 
+} 
+acc += str[index]; // adds letter to accumulator at current index 
+index--; // update index to be next letter 
+return checkPalindrome(str, index, acc); // recursive call: call function again with string, current index, updated accumulator 
+}
+console.log("We can use recursion to check if string are palindromes:");
+console.log("'check this string': " + checkPalindrome("check this string"));
+console.log("'hannah: " + checkPalindrome("hannah"));

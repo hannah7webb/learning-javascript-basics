@@ -47,7 +47,7 @@ class Cat extends Pet { // subclass: Cat (inherits from Pet, but with its own un
 }
 
 // --------------------------------------------------------------------
-// Implementation: 
+// implementation: 
 // creates a Dog object
 const rex = new Dog("Rex", 3, "German Shepherd");
 rex.describe(); // Inherited from Pet

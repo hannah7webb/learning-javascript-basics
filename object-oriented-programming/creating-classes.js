@@ -1,77 +1,60 @@
-// Base class: Pet
-// This defines general properties and behaviors that ALL pets will have.
-class Pet {
-  // The constructor runs when you create a new instance of Pet (or a subclass).
-  constructor(name, age) {
-    // 'this' refers to the new object being created.
-    this.name = name; // Store the pet's name
-    this.age = age;   // Store the pet's age
+// this file walks through an example of how to create and extend classes
+
+class Pet { // base class: Pet (this defines general properties and behaviors that all pets will have)
+  constructor(name, age) { // constructor runs when you create a new instance of Pet (or a subclass)
+    this.name = name; 
+    this.age = age;  
   }
   
-  // Method: speak()
-  // A general method for making a sound — subclasses can override this.
-  speak() {
+  speak() { // method: speak() (a general method for making a sound. subclasses can override this) 
     console.log(`${this.name} makes a noise.`);
   }
   
-  // Method: describe()
-  // Gives a quick description of the pet.
+  // method: describe() (gives a quick description of the pet)
   describe() {
     console.log(`${this.name} is ${this.age} years old.`);
   }
 }
-
-// Subclass: Dog
-// This class inherits from Pet, but adds extra properties and custom behavior.
-class Dog extends Pet {
-  constructor(name, age, breed) {
-    // Call the parent constructor to set 'name' and 'age'
+ 
+class Dog extends Pet { // subclass: Dog (this class inherits from Pet, but adds extra properties and custom behavior)
+  constructor(name, age, breed) { // calls the parent constructor to set 'name' and 'age'
     super(name, age);
-    this.breed = breed; // Add a dog-specific property
+    this.breed = breed; // adds a dog-specific property
   }
   
-  // Override the speak() method
-  // Dogs bark instead of making a generic noise.
-  speak() {
+  speak() { // overrides the speak() method (dogs bark instead of making a generic noise)
     console.log(`${this.name} barks! 🐶`);
   }
   
-  // Dog-specific method
-  fetch() {
+  fetch() { // dog-specific method
     console.log(`${this.name} runs to fetch the ball.`);
   }
 }
 
-// Subclass: Cat
-// Inherits from Pet, but with its own unique properties and methods.
-class Cat extends Pet {
-  constructor(name, age, color) {
-    // Call the parent constructor for 'name' and 'age'
+class Cat extends Pet { // subclass: Cat (inherits from Pet, but with its own unique properties and methods)
+  constructor(name, age, color) { // calls the parent constructor for 'name' and 'age'
     super(name, age);
-    this.color = color; // Add a cat-specific property
+    this.color = color; // adds a cat-specific property
   }
   
-  // Override speak()
-  // Cats meow instead of the generic noise.
-  speak() {
+  speak() { // overrides speak() method (catz meow instead of the generic noise)
     console.log(`${this.name} meows! 🐱`);
   }
   
-  // Cat-specific method
-  nap() {
+  nap() { // cat-specific method
     console.log(`${this.name} curls up for a nap.`);
   }
 }
 
-// --- Example usage ---
-
-// Create a Dog object
+// --------------------------------------------------------------------
+// Implementation: 
+// creates a Dog object
 const rex = new Dog("Rex", 3, "German Shepherd");
 rex.describe(); // Inherited from Pet
 rex.speak();    // Overridden in Dog
 rex.fetch();    // Only exists in Dog
 
-// Create a Cat object
+// creates a Cat object
 const luna = new Cat("Luna", 2, "black");
 luna.describe(); // Inherited from Pet
 luna.speak();    // Overridden in Cat

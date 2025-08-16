@@ -149,7 +149,7 @@ return reverseString(str, index, acc); // recursive call: call function again wi
 }
 console.log("We can use recursion to reverse strings like 'racecar is a palindrome': " + reverseString("racecar is a palindrome"));
 // --------------------------------------------------------------------
-// example #7: uses a recursive algorithm to check if a string is a palindrome
+// example #8: uses a recursive algorithm to check if a string is a palindrome
 function checkPalindrome(str, index = str.length - 1, acc = "") {
 if (index === -1) { // if we've finished traversing the string, return boolean checking if reverse string is same as original string 
   return str === acc; 
@@ -161,3 +161,12 @@ return checkPalindrome(str, index, acc); // recursive call: call function again 
 console.log("We can use recursion to check if string are palindromes:");
 console.log("'check this string': " + checkPalindrome("check this string"));
 console.log("'hannah: " + checkPalindrome("hannah"));
+
+
+
+
+
+
+
+
+

@@ -52,3 +52,6 @@ for (const entry of Object.entries(dog1)) {
 for (const key in dog1) {
     console.log("for-in key:", key, dog1[key]); // keys only
 }
+// however, you should not rely on for-in if you only want an object's *own* properties,
+// because for-in also iterates over inherited properties from its prototype chain.
+

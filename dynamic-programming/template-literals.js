@@ -1,8 +1,8 @@
-// this file explains how template-literals work and provides examples for usecases 
+// this file explains how template-literals work and provides examples for use cases 
     // template literals allow you to create strings that can dynamically include variables, expressions, and multi-line text
     // they make it easy and readable to insert variable values or expressions directly into strings 
 // --------------------------------------------------------------------
-// example #1: demonstrates usecase of including a template literal to dynamically insert variables
+// example #1: demonstrates use case of including a template literal to dynamically insert variables
 const name = "Hannah"; 
 const timeNow = new Date(); 
 
@@ -21,8 +21,7 @@ const timeNow = new Date();
 //     return adjustedTime; 
 // }
 
-// improved function for efficiency and readability via template literals!
-
+// improved function for efficiency and readability via template literals! : 
 function adjustHours(time) {
     let hours = time.getHours();
     const minutes = time.getMinutes().toString().padStart(2, "0");
@@ -53,3 +52,20 @@ function adjustHours(time) {
 
 const message = `Welcome ${name}, the time is ` + adjustHours(timeNow); 
 console.log(message);
+// --------------------------------------------------------------------
+// example #2: demonstrates use case of including a template literal to connect strings without special characters 
+const user = "Joe";
+
+const greet = `Hello ${name},
+
+Welcome to the template literals demo!
+This message spans multiple lines
+without needing any special characters.
+
+Have a great day!`;
+
+// with template literals, you can directly press Enter to create a new line
+// variables like ${name} still work inside the multi-line string
+// and it's much cleaner and readable than using "Hello " + name + "\nWelcome..." with \n 
+
+console.log(greet);
